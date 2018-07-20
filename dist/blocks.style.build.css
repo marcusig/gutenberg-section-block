@@ -1,0 +1,14 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-mkl-section-block, .entry-content > .wp-block-mkl-section-block {
+  max-width: none;
+  width: 100%; }

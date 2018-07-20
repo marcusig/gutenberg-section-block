@@ -1,0 +1,12 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-mkl-section-block {
+	&, .entry-content > & {
+		max-width: none;
+		width: 100%;
+	}
+}

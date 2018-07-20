@@ -1,0 +1,23 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-mkl-section-block {
+  max-width: none;
+  width: 100%; }
+
+.edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"].is-selected .core-blocks-spacer__resize-handler-bottom,
+.edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"].is-selected .core-blocks-spacer__resize-handler-top {
+  display: block;
+  z-index: 400; }
+
+.edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"] .resizing {
+  background: rgba(2, 133, 186, 0.06); }

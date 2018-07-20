@@ -1,0 +1,17 @@
+{
+  "name": "section-block-cgb-guten-block",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cgb-scripts start",
+    "build": "cgb-scripts build",
+    "eject": "cgb-scripts eject"
+  },
+  "dependencies": {
+    "cgb-scripts": "1.9.8",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.10",
+    "memize": "^1.0.5",
+    "re-resizable": "^4.7.1"
+  }
+}
