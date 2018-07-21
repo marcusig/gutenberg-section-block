@@ -17,14 +17,20 @@ const {
 	PanelBody, 
 	RangeControl,
 	withFallbackStyles,
+	Button, 
+	Spinner, 
+	ResponsiveWrapper,
+	ToggleControl,
 } = wp.components;
-const { Fragment, compose } = wp.element;
+const { Fragment } = wp.element;
+const { compose } = wp.compose;
 const {
 	InspectorControls,
 	InnerBlocks,
 	PanelColor,
 	withColors,
 	getColorClass,
+	MediaUpload,
 } = wp.editor;
 
 const { getComputedStyle } = window;
@@ -40,6 +46,7 @@ const FallbackStyles = withFallbackStyles( ( node, ownProps ) => {
 		// fallbackFontSize: fontSize || customFontSize || ! computedStyles ? undefined : parseInt( computedStyles.fontSize ) || undefined,
 	};
 } );
+
 // data-align="full"
 const Edit = ( props ) => {
 	// Creates a <p class='wp-block-cgb-block-section-block'></p>.
@@ -50,18 +57,37 @@ const Edit = ( props ) => {
 		setBackgroundColor,
 		fallbackBackgroundColor,
 		toggleSelection,
+		media
 	} = props;
-	const { backgroundColor, customBackgroundColor, resizeTopIsActive, resizeBottomIsActive } = attributes
-	// console.log('bg:', backgroundColor,customBackgroundColor, toggleSelection);
+
+	const onSelectBgImage = ( media ) => {
+		setAttributes( {
+			bgImage: {
+				id: media.id,
+				image: media.sizes.large || media.sizes.full,
+			}
+		} )
+	}
+
+	const onRemoveBgImage = () => {
+		setAttributes( {
+			bgImage: null
+		} )
+	}
+
+	const { backgroundColor, customBackgroundColor, resizeTopIsActive, resizeBottomIsActive, bgImage, bgOptions } = attributes
+
 	return (
 		<Fragment>
 			<InspectorControls>
-				<PanelBody title={ __( 'Spacing' ) }>
+				<PanelBody
+					title={ __( 'Spacing' ) }
+					initialOpen={ false }
+				>
 					<RangeControl
 						label={ __( 'Spacing top' ) }
 						value={ attributes.spacingTop }
 						onChange={ ( nextSpacing ) => {
-							console.log
 							setAttributes( {
 								spacingTop: nextSpacing,
 							} );
@@ -82,7 +108,108 @@ const Edit = ( props ) => {
 						max={ 200 }
 						step={ 10 }
 					/>
-				</PanelBody>				
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Background image' ) }
+					initialOpen={ false }
+				>
+					{ ! bgImage &&
+						<div>
+							<MediaUpload
+								title={ __('Set background image') }
+								onSelect={ onSelectBgImage }
+								type="image"
+								modalClass="editor-post-featured-image__media-modal"
+								render={ ( { open } ) => (
+									<Button className="editor-post-featured-image__toggle" onClick={ open }>
+										{ __( 'Set background image' ) }
+									</Button>
+								) }
+							/>
+						</div>
+					}
+					{ !! bgImage && <MediaUpload
+						title={ __( 'Set background image' ) }
+						onSelect={ onSelectBgImage }
+						type="image"
+						value={ bgImage.id }
+						modalClass="editor-post-featured-image__media-modal"
+						render={ ( { open } ) => (
+							<div className="editor-bg-image">
+								<Button className="editor-post-featured-image__preview" onClick={ open }>
+									<ResponsiveWrapper
+										naturalWidth={ bgImage.image.width }
+										naturalHeight={ bgImage.image.height }
+									>
+										<img src={ bgImage.image.url } alt={ __( 'BG Image' ) } />
+									</ResponsiveWrapper>
+								</Button>
+								<Button onClick={ open } isDefault isLarge>
+									{ __( 'Replace image' ) }
+								</Button>
+								<Button onClick={ onRemoveBgImage } isLink isDestructive>
+									{ __('Remove background image') }
+								</Button>
+							</div>
+						) }
+					/>
+					}
+					{ !! bgImage && <div className="section-bg-settings">
+						<RangeControl
+							label={ __( 'Opacity' ) }
+							value={ bgOptions.opacity * 100 }
+							onChange={ ( nextOpacity ) => {
+								setAttributes( {
+									bgOptions: {
+										...bgOptions,
+										opacity: nextOpacity / 100,
+									},
+								} );
+							} }
+							min={ 0 }
+							max={ 100 }
+							step={ 10 }
+						/>
+						<ToggleControl
+							label={ __( 'Fixed Background' ) }
+							checked={ !! bgOptions.fixed }
+							onChange={ ( nextFixed ) => {
+								setAttributes( {
+									bgOptions: {
+										...bgOptions,
+										fixed: nextFixed,
+									},
+								} );
+							} }
+						/>
+						{ ! bgOptions.fixed && <ToggleControl
+								label={ __( 'Stretch Background' ) }
+								checked={ !! bgOptions.stretch }
+								onChange={ ( nextStretch ) => {
+									setAttributes( {
+										bgOptions: {
+											...bgOptions,
+											stretch: nextStretch,
+										},
+									} );
+								} }
+							/>
+						}
+						{ ( ! bgOptions.fixed && ! bgOptions.stretch )  && <ToggleControl
+								label={ __( 'Repeat Background' ) }
+								checked={ !! bgOptions.repeat }
+								onChange={ ( nextRepeat ) => {
+									setAttributes( {
+										bgOptions: {
+											...bgOptions,
+											repeat: nextRepeat,
+										},
+									} );
+								} }
+							/>
+						}
+					</div>}
+				</PanelBody>
 				<PanelColor
 					colorValue={ customBackgroundColor }
 					initialOpen={ false }
@@ -95,7 +222,6 @@ const Edit = ( props ) => {
 								customBackgroundColor: nextColor
 							}
 						)
-						// setBackgroundColor(nextColor)
 						console.log('now:', backgroundColor, nextColor);
 					} }
 				/>
@@ -106,8 +232,20 @@ const Edit = ( props ) => {
 					backgroundColor: customBackgroundColor,
 				} }
 			>
+				{ !! bgImage && <div
+					className={ classnames( 
+						'section-bg', {
+							'bg__repeated': bgOptions.repeat,
+							'bg__stretched': bgOptions.stretch || bgOptions.fixed,
+							'bg__fixed': bgOptions.fixed,
+						} ) }
+					style={ {
+						backgroundImage: bgImage ? 'url(' + bgImage.image.url + ')' : undefined,
+						opacity: bgOptions.opacity
+					} }
+				/> }
 				<ResizableBox
-					className={ resizeTopIsActive ? 'resizing': '' }
+					className={ classnames( 'spacing-box', { 'resizing': resizeTopIsActive } ) }
 					size={ {
 						height: attributes.spacingTop,
 					} }
@@ -117,9 +255,9 @@ const Edit = ( props ) => {
 						bottom: 'core-blocks-spacer__resize-handler-bottom',
 					} }
 					enable={ {
-						top: true,
+						top: false,
 						right: false,
-						bottom: false,
+						bottom: true,
 						left: false,
 						topRight: false,
 						bottomRight: false,
@@ -143,7 +281,7 @@ const Edit = ( props ) => {
 				/>
 				<InnerBlocks />
 				<ResizableBox
-					className={ resizeBottomIsActive ? 'resizing': 'r' }
+					className={ classnames( 'spacing-box', { 'resizing': resizeBottomIsActive } ) }
 					size={ {
 						height: attributes.spacingBottom,
 					} }
@@ -196,7 +334,7 @@ const Edit = ( props ) => {
 registerBlockType( 'mkl/section-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: __( 'Section' ), // Block title.
-	icon: 'shield', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+	icon: 'align-center', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'layout', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'section' ),
@@ -205,11 +343,11 @@ registerBlockType( 'mkl/section-block', {
 	attributes: {
 		spacingTop: {
 			type: 'number',
-			default: 20
+			default: 60
 		},
 		spacingBottom: {
 			type: 'number',
-			default: 20
+			default: 60
 		},
 		backgroundColor: {
 			type: 'string',
@@ -217,8 +355,18 @@ registerBlockType( 'mkl/section-block', {
 		customBackgroundColor: {
 			type: 'string',
 		},
-		backgroundImage: {
-			type: 'string',
+		bgImage: {
+			type: 'object',
+			default: null,
+		},
+		bgOptions: {
+			type: 'object',
+			default: {
+				repeat: false,
+				stretch: true,
+				fixed: false,
+				opacity: 0.5,
+			}
 		},
 	},
 	/**
@@ -232,7 +380,7 @@ registerBlockType( 'mkl/section-block', {
 	edit: compose( [
 		withColors( 'backgroundColor', { textColor: 'color' } ),
 		FallbackStyles,
-	] )( Edit ), 
+	] )( Edit ),
 
 
 	/**
@@ -248,9 +396,10 @@ registerBlockType( 'mkl/section-block', {
 			backgroundColor,
 			customBackgroundColor,
 			spacingBottom,
-			spacingTop
+			spacingTop,
+			bgImage,
+			bgOptions
 		} = attributes;
-
 		const backgroundClass = getColorClass( 'background-color', backgroundColor );
 		const classes = classnames(
 			{
@@ -263,11 +412,21 @@ registerBlockType( 'mkl/section-block', {
 			backgroundColor: backgroundClass ? undefined : customBackgroundColor,
 			paddingBottom: spacingBottom ? spacingBottom : undefined,
 			paddingTop: spacingTop ? spacingTop : undefined,
-
 		}
-
 		return (
 			<section className={ classes ? classes : undefined } style={ styles }>
+				{ !! bgImage && <div
+					className={ classnames( 
+						'section-bg', {
+							'bg__repeated': bgOptions.repeat,
+							'bg__stretched': bgOptions.stretch || bgOptions.fixed,
+							'bg__fixed': bgOptions.fixed,
+						} ) }
+					style={ {
+						backgroundImage: bgImage ? 'url(' + bgImage.image.url + ')' : undefined,
+						opacity: bgOptions.opacity
+					} }
+				/> }
 				<InnerBlocks.Content />
 			</section>
 		);
@@ -278,13 +437,6 @@ registerBlockType( 'mkl/section-block', {
 	 * @param {*} attributes 
 	 */
 	getEditWrapperProps( attributes ) {
-		// const { align } = attributes;
 		return { 'data-align': 'full' };
 	},
-	// migrate( attributes ) {
-	// 	return omit( {
-	// 		...attributes,
-	// 		customBackgroundColor: attributes.backgroundColor && '#' === attributes.backgroundColor[ 0 ] ? attributes.backgroundColor : undefined,
-	// 	}, [ 'backgroundColor' ] );
-	// },
 } );

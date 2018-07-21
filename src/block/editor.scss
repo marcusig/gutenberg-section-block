@@ -4,16 +4,107 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+ 
+ .wp-block-mkl-section-block {
+	position: relative;
+	.section-bg {
+		&.bg__fixed {
+			background-position: 0 -100%;
+		}
+	}
+	.editor-block-list__block & .editor-block-list__layout {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+.edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"] {
+	/* Clearfix */
+	section.wp-block-mkl-section-block::before,
+	section.wp-block-mkl-section-block::after {
+		content: ' ';
+		display: table;
+	}
+}
+.edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"].is-selected {
 
-.wp-block-mkl-section-block {
-	max-width: none;
-	width: 100%;
+	.core-blocks-spacer__resize-handler-bottom {
+		bottom: calc(50% - 8px) !important;
+		z-index: 400;
+	}
+
+	.spacing-box {
+
+		padding-bottom: 1px;
+
+		&::before {
+			content: ' ';
+			display: block;
+			height: 50%;
+			width: 1px;
+			border-left: 1px dotted rgba(255, 255, 255, 0.5);
+			position: absolute;
+			top: 0;
+			left: 50%;
+			visibility: hidden;
+		}
+		&::after {
+			content: ' ';
+			display: block;
+			height: 8px;
+			width: 8px;
+			border-left: 1px solid rgba(255, 255, 255, 0.5);
+			border-top: 1px solid rgba(255, 255, 255, 0.5);
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-3.5px) translateY(1px) rotate(45deg);
+			visibility: hidden;
+		}
+		& > span {
+			&::before {
+				content: ' ';
+				display: block;
+				height: 50%;
+				width: 1px;
+				border-left: 1px dotted rgba(255, 255, 255, 0.5);
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				visibility: hidden;
+			}
+			&::after {
+				content: ' ';
+				display: block;
+				height: 8px;
+				width: 8px;
+				border-left: 1px solid rgba(255, 255, 255, 0.5);
+				border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+				position: absolute;
+				bottom: 0;
+				left: calc(50% - 1px);
+				transform: translateX(-2px) translateY(-1px) rotate(-45deg);
+				visibility: hidden;
+			}		}
+		&:hover {
+			.core-blocks-spacer__resize-handler-bottom {
+				display: block;
+			}
+			&::before, &::after, & > span::before, & > span::after {
+				visibility: visible;
+			}
+		}
+	}
+
+	.resizing {
+		background: rgba(2, 133, 186, 0.2);
+	}
+
 }
-.edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"].is-selected .core-blocks-spacer__resize-handler-bottom, 
-.edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"].is-selected .core-blocks-spacer__resize-handler-top {
-	display: block;
-	z-index: 400;
-}
-.edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"] .resizing {
-    background: rgba(2, 133, 186, 0.06);
+
+.editor-bg-image {
+	margin-bottom: 1em;
+	.components-button + .components-button {
+		margin-top: 1em;
+		margin-right: 8px;
+	}
 }
