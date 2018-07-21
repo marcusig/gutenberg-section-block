@@ -27,6 +27,9 @@
 
 .edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"].is-selected .core-blocks-spacer__resize-handler-bottom {
   bottom: calc(50% - 8px) !important;
+  -webkit-transform: translateX(1px);
+      -ms-transform: translateX(1px);
+          transform: translateX(1px);
   z-index: 400; }
 
 .edit-post-visual-editor .editor-block-list__block[data-type="mkl/section-block"].is-selected .spacing-box {

@@ -29,6 +29,7 @@
 
 	.core-blocks-spacer__resize-handler-bottom {
 		bottom: calc(50% - 8px) !important;
+		transform: translateX(1px);
 		z-index: 400;
 	}
 
