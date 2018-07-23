@@ -17,4 +17,11 @@ Plus it's a good attempt at exploring and reusing the existing components, which
 - Background color:<br>
 ![image](https://user-images.githubusercontent.com/11990914/43083015-c3d1d0e0-8e95-11e8-96bc-341bec6db643.png)
 
+
+![kapture 2018-07-23 at 17 00 10](https://user-images.githubusercontent.com/11990914/43084938-f581fa3a-8e99-11e8-8dd9-b513d5804929.gif)
+
+
+
+----
+
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
