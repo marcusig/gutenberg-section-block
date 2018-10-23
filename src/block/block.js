@@ -29,7 +29,7 @@ const {
 	InnerBlocks,
 	PanelColor,
 	withColors,
-	getColorClass,
+	getColorClassName,
 	MediaUpload,
 } = wp.editor;
 
@@ -400,7 +400,7 @@ registerBlockType( 'mkl/section-block', {
 			bgImage,
 			bgOptions
 		} = attributes;
-		const backgroundClass = getColorClass( 'background-color', backgroundColor );
+		const backgroundClass = getColorClassName( 'background-color', backgroundColor );
 		const classes = classnames(
 			{
 				className,
