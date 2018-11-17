@@ -21,6 +21,12 @@ Plus it's a good attempt at exploring and reusing the existing components, which
 ![kapture 2018-07-23 at 17 00 10](https://user-images.githubusercontent.com/11990914/43084938-f581fa3a-8e99-11e8-8dd9-b513d5804929.gif)
 
 
+## Changelog:
+
+**2018-11-17 - v.1.0.1** 
+
+- Tweak: Fixed spacer slider styles
+- Fix: Update type parameter to new allowedTypes in MediaUpload
 
 ----
 
