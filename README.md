@@ -23,6 +23,14 @@ Plus it's a good attempt at exploring and reusing the existing components, which
 
 ## Changelog:
 
+**2018-11-17 - v.1.1.0** 
+
+*Hopefully the deprecation / migrate part will work properly, allowing users to keep their previously created blocks, despite the changes:*
+
+- Feature: Adds Tag selector
+- Feature: Adds section text color
+- Feature: Adds spacing toggle
+
 **2018-11-17 - v.1.0.1** 
 
 - Fix; Fix deprecated error: Update to PanelColorSettings
