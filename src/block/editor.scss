@@ -87,13 +87,18 @@
 				visibility: hidden;
 			}		}
 		&:hover {
-			.core-blocks-spacer__resize-handler-bottom {
+			.core-blocks-spacer__resize-handler-bottom, {
 				display: block;
 			}
 			&::before, &::after, & > span::before, & > span::after {
 				visibility: visible;
 			}
-		}
+			.components-resizable-box__handle::before {
+				position: absolute;
+				left: calc(50% - 8px);
+				top: -6px;
+			}				
+	}
 	}
 
 	.resizing {

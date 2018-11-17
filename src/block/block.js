@@ -118,7 +118,7 @@ const Edit = ( props ) => {
 							<MediaUpload
 								title={ __('Set background image') }
 								onSelect={ onSelectBgImage }
-								type="image"
+								allowedTypes={["image"]}
 								modalClass="editor-post-featured-image__media-modal"
 								render={ ( { open } ) => (
 									<Button className="editor-post-featured-image__toggle" onClick={ open }>
@@ -131,7 +131,7 @@ const Edit = ( props ) => {
 					{ !! bgImage && <MediaUpload
 						title={ __( 'Set background image' ) }
 						onSelect={ onSelectBgImage }
-						type="image"
+						allowedTypes={["image"]}
 						value={ bgImage.id }
 						modalClass="editor-post-featured-image__media-modal"
 						render={ ( { open } ) => (
@@ -252,7 +252,7 @@ const Edit = ( props ) => {
 					minHeight="0"
 					handleClasses={ {
 						top: 'core-blocks-spacer__resize-handler-top',
-						bottom: 'core-blocks-spacer__resize-handler-bottom',
+						bottom: 'core-blocks-spacer__resize-handler-bottom components-resizable-box__handle',
 					} }
 					enable={ {
 						top: false,
@@ -288,7 +288,7 @@ const Edit = ( props ) => {
 					minHeight="0"
 					handleClasses={ {
 						top: 'core-blocks-spacer__resize-handler-top',
-						bottom: 'core-blocks-spacer__resize-handler-bottom',
+						bottom: 'core-blocks-spacer__resize-handler-bottom components-resizable-box__handle',
 					} }
 					enable={ {
 						top: false,
