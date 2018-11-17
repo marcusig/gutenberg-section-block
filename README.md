@@ -25,6 +25,7 @@ Plus it's a good attempt at exploring and reusing the existing components, which
 
 **2018-11-17 - v.1.0.1** 
 
+- Fix; Fix deprecated error: Update to PanelColorSettings
 - Tweak: Fixed spacer slider styles
 - Fix: Update type parameter to new allowedTypes in MediaUpload
 

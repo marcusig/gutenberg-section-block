@@ -27,7 +27,7 @@ const { compose } = wp.compose;
 const {
 	InspectorControls,
 	InnerBlocks,
-	PanelColor,
+	PanelColorSettings,
 	withColors,
 	getColorClassName,
 	MediaUpload,
@@ -210,20 +210,23 @@ const Edit = ( props ) => {
 						}
 					</div>}
 				</PanelBody>
-				<PanelColor
-					colorValue={ customBackgroundColor }
+				<PanelColorSettings
 					initialOpen={ false }
 					title={ __( 'Background Color' ) }
-					onChange={ ( nextColor, ...whatelse ) => {
-						console.log('before:', backgroundColor, whatelse);
-						setBackgroundColor( nextColor );
-						setAttributes(
-							{
-								customBackgroundColor: nextColor
+					colorSettings={[
+						{
+							label: __( 'Background Color' ),
+							value: customBackgroundColor,
+							onChange: ( nextBgColor, ...whatelse ) => {
+								setBackgroundColor( nextBgColor );
+								setAttributes(
+									{
+										customBackgroundColor: nextBgColor
+									}
+								)
 							}
-						)
-						console.log('now:', backgroundColor, nextColor);
-					} }
+						}
+					]}
 				/>
 			</InspectorControls>
 			<section
