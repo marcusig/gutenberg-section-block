@@ -59,6 +59,9 @@ registerBlockType( 'mkl/section-block', {
 		__( 'container' ),
 	],
 	attributes: blockAttributes,
+	supports: {
+		align: [ 'wide', 'full' ], // Support Wide and Full alignment controls
+	},
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
@@ -84,11 +87,4 @@ registerBlockType( 'mkl/section-block', {
 	save: saveSection,
 
 	deprecated: deprecatedBlock,
-	/**
-	 * wrapper props
-	 * @param {*} attributes 
-	 */
-	getEditWrapperProps( attributes ) {
-		return { 'data-align': 'full' };
-	},
 } );
