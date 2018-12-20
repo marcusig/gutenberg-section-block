@@ -23,6 +23,10 @@ Plus it's a good attempt at exploring and reusing the existing components, which
 
 ## Changelog:
 
+**2018-12-20 - v.1.1.2** 
+
+- Tweak: Show controls for wide and full alignment
+
 **2018-12-11 - v.1.1.1** 
 
 - Fix: Changed JS dependency from wp-blocks to wp-block-library
