@@ -23,6 +23,10 @@ Plus it's a good attempt at exploring and reusing the existing components, which
 
 ## Changelog:
 
+**2019-02-25 - v.1.1.3** 
+
+- Fix: Update CGB Scripts to latest version, which fixes compatibility issue with Ghost Kit
+
 **2018-12-20 - v.1.1.2** 
 
 - Tweak: Show controls for wide and full alignment
