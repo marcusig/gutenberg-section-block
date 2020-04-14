@@ -24,7 +24,7 @@ const {
 	InnerBlocks,
 	PanelColorSettings,
 	MediaUpload,
-} = wp.editor;
+} = wp.blockEditor;
 
 export default ( props ) => {
 	console.log('EDIT DEPRECATED', props);
@@ -131,7 +131,7 @@ export default ( props ) => {
 										<img src={ bgImage.image.url } alt={ __( 'BG Image' ) } />
 									</ResponsiveWrapper>
 								</Button>
-								<Button onClick={ open } isDefault isLarge>
+								<Button onClick={ open } isLarge>
 									{ __( 'Replace image' ) }
 								</Button>
 								<Button onClick={ onRemoveBgImage } isLink isDestructive>

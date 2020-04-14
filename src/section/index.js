@@ -20,7 +20,7 @@ const {
 const { compose } = wp.compose;
 const {
 	withColors,
-} = wp.editor;
+} = wp.blockEditor;
 
 const { getComputedStyle } = window;
 
@@ -30,7 +30,7 @@ const FallbackStyles = withFallbackStyles( ( node, ownProps ) => {
 	//verify if editableNode is available, before using getComputedStyle.
 	const computedStyles = editableNode ? getComputedStyle( editableNode ) : null;
 	return {
-		fallbackBackgroundColor: backgroundColor || ! computedStyles ? undefined : computedStyles.backgroundColor,
+		fallbackBackgroundColor: backgroundColor || ! computedStyles ? null : computedStyles.backgroundColor,
 		// fallbackTextColor: textColor || ! computedStyles ? undefined : computedStyles.color,
 		// fallbackFontSize: fontSize || customFontSize || ! computedStyles ? undefined : parseInt( computedStyles.fontSize ) || undefined,
 	};

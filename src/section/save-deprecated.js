@@ -9,7 +9,7 @@ import classnames from 'classnames'
 const {
 	InnerBlocks,
 	getColorClassName,
-} = wp.editor;
+} = wp.blockEditor;
 
 export default ( pp ) => {
 	const { attributes, className } = pp;

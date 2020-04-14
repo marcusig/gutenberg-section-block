@@ -5,7 +5,7 @@
  * Simple block, renders and saves the same content without any interactivity.
  */
 import classnames from 'classnames'
-import ResizableBox from 're-resizable'
+import { Resizable } from "re-resizable";
 import Section from './section-tag'
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
@@ -25,7 +25,7 @@ const {
 	InnerBlocks,
 	PanelColorSettings,
 	MediaUpload,
-} = wp.editor;
+} = wp.blockEditor;
 
 export default ( props ) => {
 	const {
@@ -131,7 +131,7 @@ export default ( props ) => {
 										<img src={ bgImage.image.url } alt={ __( 'BG Image' ) } />
 									</ResponsiveWrapper>
 								</Button>
-								<Button onClick={ open } isDefault isLarge>
+								<Button onClick={ open } isSecondary isLarge>
 									{ __( 'Replace image' ) }
 								</Button>
 								<Button onClick={ onRemoveBgImage } isLink isDestructive>
@@ -261,7 +261,7 @@ export default ( props ) => {
 					} }
 				/> }
 				{ !! enableSpacing &&
-					<ResizableBox
+					<Resizable
 						className={ classnames( 'spacing-box', { 'resizing': resizeTopIsActive } ) }
 						size={ {
 							height: attributes.spacingTop,
@@ -297,7 +297,7 @@ export default ( props ) => {
 					/>
 				}
 				<InnerBlocks />
-				{ !! enableSpacing && <ResizableBox
+				{ !! enableSpacing && <Resizable
 						className={ classnames( 'spacing-box', { 'resizing': resizeBottomIsActive } ) }
 						size={ {
 							height: attributes.spacingBottom,

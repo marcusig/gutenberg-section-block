@@ -47,7 +47,7 @@ function section_block_cgb_editor_assets() {
 	wp_enqueue_script(
 		'section_block-cgb-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-block-library', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
+		array( 'wp-block-library', 'wp-editor', 'wp-blocks', 'wp-i18n', 'wp-element' ), // Dependencies, defined above.
 		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
 		true // Enqueue the script in the footer.
 	);

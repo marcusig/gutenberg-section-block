@@ -10,7 +10,7 @@ import Section from './section-tag'
 const {
 	InnerBlocks,
 	getColorClassName,
-} = wp.editor;
+} = wp.blockEditor;
 
 export default ( { attributes, className } ) => {
 
