@@ -23,6 +23,10 @@ Plus it's a good attempt at exploring and reusing the existing components, which
 
 ## Changelog:
 
+**2020-04-14 - v.1.1.4** 
+
+- Fix: Update various libraries, fix compatibility with WP 5.4
+
 **2019-02-25 - v.1.1.3** 
 
 - Fix: Update CGB Scripts to latest version, which fixes compatibility issue with Ghost Kit
