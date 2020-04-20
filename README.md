@@ -1,3 +1,5 @@
+**Note: The aim of this plugin is to fill a gap in the default layout blocks until a similar one is built into core.** So it receives the minimum maintenance until then.
+
 # Section block for Gutenberg
 
 One of the main elements used for layout in pages, a section / container block is on the roadmap, but I needed one. Now. So Here it is!
