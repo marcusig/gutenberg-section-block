@@ -25,6 +25,10 @@ Plus it's a good attempt at exploring and reusing the existing components, which
 
 ## Changelog:
 
+**2023-11-16 - v.1.1.5** 
+
+- Fix: Add lodash to dependencies to prevent breaking in WP 6.4
+
 **2020-04-14 - v.1.1.4** 
 
 - Fix: Update various libraries, fix compatibility with WP 5.4
