@@ -5,7 +5,7 @@
  * Description: Section block — is a Gutenberg plugin created via create-guten-block.
  * Author: marcusig, mklacroix
  * Author URI: https://mklacroix.com/
- * Version: 1.1.4
+ * Version: 1.1.5
  * License: GPL2+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  *
