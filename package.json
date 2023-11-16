@@ -10,7 +10,6 @@
   "dependencies": {
     "cgb-scripts": "^1.23.0",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.15",
     "memize": "^1.1.0",
     "re-resizable": "^6.3.0"
   }
