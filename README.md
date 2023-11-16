@@ -1,4 +1,5 @@
-**Note: The aim of this plugin is to fill a gap in the default layout blocks until a similar one is built into core.** So it receives the minimum maintenance until then.
+**WARNING: This plugin isn't actively maintained.** If you find issues or want to add something, you may submit pull requests. 
+But I would highly suggest using the available core blocks, which I'm sure now cover the features in this block.
 
 # Section block for Gutenberg
 
